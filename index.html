@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>עיצוב שולחנות חתונה ואירועים בסגנון ספרים | Lilou Books Events</title>
+<meta name="description" content="עיצוב שולחנות לחתונות ואירועים בסגנון ספרים - אגרטלי ספרים מספרי וינטג', קיר ספרים ועמדת מארחת עם ספר מעוצב אישית. התאמה אישית מלאה לצבעי הזוג. Lilou Books.">
+<link rel="canonical" href="https://events.liloubooks.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://events.liloubooks.com/">
+<meta property="og:site_name" content="Lilou Books Events">
+<meta property="og:title" content="עיצוב שולחנות חתונה ואירועים בסגנון ספרים | Lilou Books">
+<meta property="og:description" content="אגרטלי ספרים מספרי וינטג', קיר ספרים ועמדת מארחת עם ספר מעוצב אישית - עיצוב שולחן מלא בהתאמה אישית לצבעי הזוג.">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23D4A574' rx='15'/%3E%3Ctext x='50' y='72' font-family='Georgia, serif' font-size='70' font-weight='bold' fill='%23FAF7F2' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { max-width:100%; overflow-x:hidden; }
+
+:root {
+  --primary-color:#FFB6C1;
+  --secondary-color:#F5EFE7;
+  --text-color:#333;
+  --cream-bg:#F8F4EE;
+  --accent-brown:#8B6F47;
+  --olive:#7A7F4B;
+  --antique-pink:#D9A8A0;
+  --ivory:#EFE6D8;
+  --light-blue:#AFC8D8;
+}
+
+body {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height:1.6;
+  color:var(--text-color);
+  background-color:var(--cream-bg);
+}
+
+a { color:inherit; }
+
+header {
+  background:white;
+  box-shadow:0 2px 10px rgba(0,0,0,0.1);
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+nav {
+  max-width:1200px;
+  margin:0 auto;
+  padding:1rem 2rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:1rem;
+}
+
+.logo {
+  font-size:1.6rem;
+  font-weight:bold;
+  color:var(--accent-brown);
+  text-decoration:none;
+}
+.logo span { color:var(--primary-color); }
+
+.nav-links { display:flex; gap:1.5rem; list-style:none; flex-wrap:wrap; }
+.nav-links a { text-decoration:none; color:var(--text-color); font-weight:600; }
+.nav-links a:hover { color:var(--accent-brown); }
+
+.hero {
+  background:linear-gradient(135deg, var(--secondary-color), var(--cream-bg));
+  padding:4rem 2rem 3rem;
+  text-align:center;
+}
+
+.hero h1 {
+  font-size:2.2rem;
+  color:var(--accent-brown);
+  margin-bottom:1rem;
+}
+
+.hero p.subtitle {
+  font-size:1.15rem;
+  max-width:700px;
+  margin:0 auto 2rem;
+  color:#555;
+}
+
+.cta-button {
+  display:inline-block;
+  background:var(--primary-color);
+  color:#5a2a35;
+  font-weight:700;
+  padding:1rem 2.2rem;
+  border-radius:50px;
+  text-decoration:none;
+  font-size:1.05rem;
+  box-shadow:0 6px 18px rgba(255,182,193,0.5);
+  transition:transform .3s;
+  border:none;
+  cursor:pointer;
+}
+.cta-button:hover { transform:translateY(-3px); }
+
+section { padding:3.5rem 2rem; max-width:1100px; margin:0 auto; }
+
+.section-title {
+  text-align:center;
+  color:var(--accent-brown);
+  font-size:1.8rem;
+  margin-bottom:0.5rem;
+}
+.section-subtitle {
+  text-align:center;
+  color:#666;
+  margin-bottom:2.5rem;
+}
+
+.features-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+  gap:1.75rem;
+}
+
+.feature-card {
+  background:white;
+  border-radius:16px;
+  padding:2rem 1.5rem;
+  text-align:center;
+  box-shadow:0 4px 16px rgba(0,0,0,0.06);
+}
+
+.feature-icon {
+  width:60px; height:60px;
+  border-radius:50%;
+  background:var(--secondary-color);
+  display:flex; align-items:center; justify-content:center;
+  margin:0 auto 1rem;
+  font-size:1.8rem;
+}
+
+.feature-card h3 { color:var(--accent-brown); margin-bottom:0.6rem; font-size:1.15rem; }
+.feature-card p { color:#666; font-size:0.95rem; }
+
+.gallery-note {
+  background:var(--secondary-color);
+  border-radius:16px;
+  padding:2rem;
+  text-align:center;
+  color:#555;
+}
+
+.colors-strip {
+  display:flex;
+  justify-content:center;
+  gap:1rem;
+  margin-top:2rem;
+  flex-wrap:wrap;
+}
+.color-dot {
+  width:100px;
+  text-align:center;
+  font-size:0.85rem;
+  color:#555;
+}
+.color-dot .swatch {
+  width:60px; height:60px;
+  border-radius:50%;
+  margin:0 auto 0.5rem;
+  border:3px solid white;
+  box-shadow:0 3px 10px rgba(0,0,0,0.15);
+}
+
+.final-cta {
+  text-align:center;
+  background:linear-gradient(135deg, var(--secondary-color), white);
+  border-radius:20px;
+  padding:3rem 2rem;
+}
+.final-cta h2 { color:var(--accent-brown); margin-bottom:1rem; }
+.final-cta p { color:#666; margin-bottom:2rem; }
+
+footer {
+  background:var(--accent-brown);
+  color:white;
+  text-align:center;
+  padding:2rem;
+  font-size:0.9rem;
+}
+footer a { color:#FFE8EC; }
+
+@media (max-width:600px) {
+  .hero h1 { font-size:1.6rem; }
+}
+</style>
+</head>
+<body>
+
+<header role="banner">
+<nav>
+<a href="#home" class="logo">Lilou <span>Books</span> Events</a>
+<ul class="nav-links">
+<li><a href="https://liloubooks.com/">האתר הראשי</a></li>
+<li><a href="#services">מה אני מעצבת</a></li>
+<li><a href="preferences.html">שאלון העדפות</a></li>
+</ul>
+</nav>
+</header>
+
+<main id="home">
+
+<section class="hero" style="padding-top:3rem;">
+<h1>עיצוב שולחנות לחתונה ולאירועים בסגנון ספרים</h1>
+<p class="subtitle">אגרטלי ספרים מספרי וינטג', קיר ספרים ועמדת מארחת עם ספר מעוצב אישית עם תמונה או תאריך של הזוג - כל שולחן מקבל עיצוב מלא, בהתאמה אישית לצבעים שתבחרו.</p>
+<a href="preferences.html" class="cta-button">מלאו שאלון העדפות ← נחזור אליכם תוך 24 שעות</a>
+</section>
+
+<section id="services">
+<h2 class="section-title">מה כלול בעיצוב</h2>
+<p class="section-subtitle">אני מעצבת את השולחן כולו - לא רק את האגרטל</p>
+
+<div class="features-grid">
+<div class="feature-card">
+<div class="feature-icon">📚</div>
+<h3>אגרטלי ספרים מספרי וינטג'</h3>
+<p>ספרים ישנים שעוברים פיסול ידני והופכים לאגרטל ייחודי לכל שולחן, עם פרחים בצבעים שתבחרו.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🧵</div>
+<h3>ראנר ופרחים תואמים</h3>
+<p>ראנר בד ופרחים שנבחרים ומותאמים בדיוק לפלטת הצבעים של האירוע שלכם.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🕊️</div>
+<h3>קיר ספרים</h3>
+<p>קיר ספרים מעוצב לרקע צילומים או לעמדת קבלת פנים - נקודת עניין מרכזית לאירוע.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">💌</div>
+<h3>ספר מארחת מותאם אישית</h3>
+<p>ספר מפוסל בעמדת המארחת עם תמונה או תאריך של הזוג - מתנה וזיכרון בו זמנית.</p>
+</div>
+</div>
+</section>
+
+<section>
+<h2 class="section-title">4 פלטות צבעים לבחירה</h2>
+<p class="section-subtitle">בשאלון תבחרו את הסגנון שהכי מדבר אליכם - ואפשר תמיד להתאים עוד יותר בשיחה איתי</p>
+<div class="colors-strip">
+<div class="color-dot"><div class="swatch" style="background:var(--antique-pink);"></div>ורוד עתיק</div>
+<div class="color-dot"><div class="swatch" style="background:var(--ivory);"></div>שמנת שנהב</div>
+<div class="color-dot"><div class="swatch" style="background:var(--olive);"></div>ירוק זית</div>
+<div class="color-dot"><div class="swatch" style="background:var(--light-blue);"></div>כחול בהיר</div>
+</div>
+</section>
+
+<section>
+<div class="final-cta">
+<h2>מעצבים חתונה או אירוע?</h2>
+<p>מלאו שאלון העדפות קצר (פחות מדקה) ואחזור אליכם תוך 24 שעות עם כל הפרטים.</p>
+<a href="preferences.html" class="cta-button">למילוי שאלון ההעדפות</a>
+</div>
+</section>
+
+</main>
+
+<footer role="contentinfo">
+<p>Lilou Books Events &copy; 2026 | עיצוב חתונות ואירועים בסגנון ספרים</p>
+<p style="margin-top:0.5rem;"><a href="https://liloubooks.com/">חזרה לאתר הראשי של Lilou Books</a></p>
+</footer>
+
+</body>
+</html>
