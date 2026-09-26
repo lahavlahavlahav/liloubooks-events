@@ -81,10 +81,10 @@ header a.logo {
 
 .color-grid {
   display:grid;
-  grid-template-columns:repeat(2, 1fr);
+  grid-template-columns:repeat(3, 1fr);
   gap:1.25rem;
 }
-@media (max-width:520px) {
+@media (max-width:640px) {
   .color-grid { grid-template-columns:1fr; }
 }
 
@@ -210,22 +210,6 @@ header a.logo {
     <p class="hint">בחרו את הפלטה הקרובה ביותר לחזון שלכם - נדייק יחד בשיחה</p>
 
     <div class="color-grid">
-      <div class="color-card" data-color="ורוד עתיק">
-        <div class="color-photo" style="background:linear-gradient(135deg,#e9c3bd,#d9a8a0);">
-          <img src="colors/antique-pink.jpg" alt="עיצוב שולחן בסגנון ורוד עתיק" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <span class="placeholder-icon" style="display:none;">📖🌸</span>
-        </div>
-        <div class="label">ורוד עתיק</div>
-      </div>
-
-      <div class="color-card" data-color="שמנת שנהב">
-        <div class="color-photo" style="background:linear-gradient(135deg,#f3ead9,#e8dcc4);">
-          <img src="colors/ivory-cream.jpg" alt="עיצוב שולחן בסגנון שמנת שנהב" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <span class="placeholder-icon" style="display:none;">📖🤍</span>
-        </div>
-        <div class="label">שמנת שנהב</div>
-      </div>
-
       <div class="color-card" data-color="ירוק זית">
         <div class="color-photo" style="background:linear-gradient(135deg,#9a9e6c,#7a7f4b);">
           <img src="colors/olive-green.jpg" alt="עיצוב שולחן בסגנון ירוק זית" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -234,12 +218,20 @@ header a.logo {
         <div class="label">ירוק זית</div>
       </div>
 
-      <div class="color-card" data-color="כחול בהיר">
-        <div class="color-photo" style="background:linear-gradient(135deg,#cfe0ea,#afc8d8);">
-          <img src="colors/light-blue.jpg" alt="עיצוב שולחן בסגנון כחול בהיר" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <span class="placeholder-icon" style="display:none;">📖💙</span>
+      <div class="color-card" data-color="ורוד עתיק">
+        <div class="color-photo" style="background:linear-gradient(135deg,#e9c3bd,#d9a8a0);">
+          <img src="colors/antique-pink.jpg" alt="עיצוב שולחן בסגנון ורוד עתיק" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <span class="placeholder-icon" style="display:none;">📖🌸</span>
         </div>
-        <div class="label">כחול בהיר</div>
+        <div class="label">ורוד עתיק</div>
+      </div>
+
+      <div class="color-card" data-color="לבן שנהב">
+        <div class="color-photo" style="background:linear-gradient(135deg,#f3ead9,#e8dcc4);">
+          <img src="colors/ivory-white.jpg" alt="עיצוב שולחן בסגנון לבן שנהב" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <span class="placeholder-icon" style="display:none;">📖🤍</span>
+        </div>
+        <div class="label">לבן שנהב</div>
       </div>
     </div>
 
