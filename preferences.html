@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שאלון העדפות - עיצוב שולחן לאירוע | Lilou Books Events</title>
+<meta name="robots" content="noindex, follow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23D4A574' rx='15'/%3E%3Ctext x='50' y='72' font-family='Georgia, serif' font-size='70' font-weight='bold' fill='%23FAF7F2' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { max-width:100%; overflow-x:hidden; }
+
+:root {
+  --primary-color:#FFB6C1;
+  --secondary-color:#F5EFE7;
+  --text-color:#333;
+  --cream-bg:#F8F4EE;
+  --accent-brown:#8B6F47;
+  --olive:#7A7F4B;
+  --antique-pink:#D9A8A0;
+  --ivory:#EFE6D8;
+  --light-blue:#AFC8D8;
+}
+
+body {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height:1.6;
+  color:var(--text-color);
+  background-color:var(--cream-bg);
+  min-height:100vh;
+}
+
+header {
+  background:white;
+  box-shadow:0 2px 10px rgba(0,0,0,0.08);
+  padding:1rem 2rem;
+  text-align:center;
+}
+header a.logo {
+  font-size:1.4rem;
+  font-weight:bold;
+  color:var(--accent-brown);
+  text-decoration:none;
+}
+
+.wrap {
+  max-width:760px;
+  margin:0 auto;
+  padding:2.5rem 1.5rem 4rem;
+}
+
+.progress {
+  display:flex;
+  justify-content:center;
+  gap:0.6rem;
+  margin-bottom:2rem;
+}
+.progress .dot {
+  width:10px; height:10px; border-radius:50%;
+  background:#ddd;
+  transition:background .3s;
+}
+.progress .dot.active { background:var(--accent-brown); }
+
+.step { display:none; }
+.step.active { display:block; animation:fadeIn .4s ease; }
+@keyframes fadeIn { from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+
+.step h2 {
+  text-align:center;
+  color:var(--accent-brown);
+  font-size:1.5rem;
+  margin-bottom:0.4rem;
+}
+.step p.hint {
+  text-align:center;
+  color:#666;
+  margin-bottom:2rem;
+}
+
+.color-grid {
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:1.25rem;
+}
+@media (max-width:520px) {
+  .color-grid { grid-template-columns:1fr; }
+}
+
+.color-card {
+  border:3px solid transparent;
+  border-radius:18px;
+  background:white;
+  overflow:hidden;
+  cursor:pointer;
+  box-shadow:0 4px 16px rgba(0,0,0,0.08);
+  transition:transform .2s, border-color .2s;
+  text-align:center;
+}
+.color-card:hover { transform:translateY(-4px); }
+.color-card.selected { border-color:var(--accent-brown); }
+
+.color-photo {
+  height:150px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.color-photo img {
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+.color-photo .placeholder-icon { font-size:2.2rem; opacity:0.55; }
+
+.color-card .label {
+  padding:0.9rem 0.5rem;
+  font-weight:700;
+  color:var(--accent-brown);
+}
+
+.form-group { margin-bottom:1.4rem; }
+.form-group label {
+  display:block;
+  margin-bottom:0.4rem;
+  font-weight:600;
+  color:var(--accent-brown);
+}
+.form-group input,
+.form-group select {
+  width:100%;
+  padding:0.85rem 1rem;
+  border:2px solid #e5ded2;
+  border-radius:10px;
+  font-size:1rem;
+  font-family:inherit;
+  background:white;
+}
+.form-group input:focus,
+.form-group select:focus {
+  outline:none;
+  border-color:var(--accent-brown);
+}
+
+.btn-row {
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  margin-top:2rem;
+}
+
+.btn {
+  flex:1;
+  padding:1rem;
+  border:none;
+  border-radius:50px;
+  font-size:1rem;
+  font-weight:700;
+  cursor:pointer;
+  transition:transform .2s;
+}
+.btn:hover { transform:translateY(-2px); }
+.btn-primary { background:var(--primary-color); color:#5a2a35; }
+.btn-secondary { background:var(--secondary-color); color:var(--accent-brown); }
+.btn:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
+
+.selected-color-badge {
+  text-align:center;
+  margin-bottom:1.5rem;
+  color:#666;
+}
+.selected-color-badge strong { color:var(--accent-brown); }
+
+.thank-you {
+  text-align:center;
+  padding:2rem 0;
+}
+.thank-you .icon { font-size:3rem; margin-bottom:1rem; }
+.thank-you h2 { color:var(--accent-brown); margin-bottom:0.8rem; }
+.thank-you p { color:#555; margin-bottom:0.5rem; }
+
+.error-msg {
+  color:#b00020;
+  text-align:center;
+  margin-top:1rem;
+  display:none;
+}
+</style>
+</head>
+<body>
+
+<header>
+<a href="index.html" class="logo">Lilou Books Events</a>
+</header>
+
+<div class="wrap">
+
+<div class="progress" id="progressDots">
+  <div class="dot active" data-step="1"></div>
+  <div class="dot" data-step="2"></div>
+  <div class="dot" data-step="3"></div>
+</div>
+
+<form id="prefForm">
+
+  <!-- Step 1: Color style -->
+  <div class="step active" data-step="1">
+    <h2>איזה סגנון צבעים מדבר אליכם?</h2>
+    <p class="hint">בחרו את הפלטה הקרובה ביותר לחזון שלכם - נדייק יחד בשיחה</p>
+
+    <div class="color-grid">
+      <div class="color-card" data-color="ורוד עתיק">
+        <div class="color-photo" style="background:linear-gradient(135deg,#e9c3bd,#d9a8a0);">
+          <img src="colors/antique-pink.jpg" alt="עיצוב שולחן בסגנון ורוד עתיק" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <span class="placeholder-icon" style="display:none;">📖🌸</span>
+        </div>
+        <div class="label">ורוד עתיק</div>
+      </div>
+
+      <div class="color-card" data-color="שמנת שנהב">
+        <div class="color-photo" style="background:linear-gradient(135deg,#f3ead9,#e8dcc4);">
+          <img src="colors/ivory-cream.jpg" alt="עיצוב שולחן בסגנון שמנת שנהב" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <span class="placeholder-icon" style="display:none;">📖🤍</span>
+        </div>
+        <div class="label">שמנת שנהב</div>
+      </div>
+
+      <div class="color-card" data-color="ירוק זית">
+        <div class="color-photo" style="background:linear-gradient(135deg,#9a9e6c,#7a7f4b);">
+          <img src="colors/olive-green.jpg" alt="עיצוב שולחן בסגנון ירוק זית" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <span class="placeholder-icon" style="display:none;">📖🌿</span>
+        </div>
+        <div class="label">ירוק זית</div>
+      </div>
+
+      <div class="color-card" data-color="כחול בהיר">
+        <div class="color-photo" style="background:linear-gradient(135deg,#cfe0ea,#afc8d8);">
+          <img src="colors/light-blue.jpg" alt="עיצוב שולחן בסגנון כחול בהיר" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <span class="placeholder-icon" style="display:none;">📖💙</span>
+        </div>
+        <div class="label">כחול בהיר</div>
+      </div>
+    </div>
+
+    <input type="hidden" name="color_style" id="colorInput" required>
+
+    <div class="btn-row">
+      <button type="button" class="btn btn-primary" id="toStep2" disabled>המשך ←</button>
+    </div>
+  </div>
+
+  <!-- Step 2: Event details -->
+  <div class="step" data-step="2">
+    <h2>ספרו לי על האירוע</h2>
+    <div class="selected-color-badge">בחרתם: <strong id="colorBadge"></strong></div>
+
+    <div class="form-group">
+      <label for="event_type">סוג האירוע *</label>
+      <select id="event_type" name="event_type" required>
+        <option value="">בחרו סוג אירוע</option>
+        <option value="חתונה">💍 חתונה</option>
+        <option value="בר/בת מצווה">🎉 בר/בת מצווה</option>
+        <option value="יום הולדת">🎂 יום הולדת</option>
+        <option value="אירוע עסקי">🏢 אירוע עסקי</option>
+        <option value="אחר">✨ אחר</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="event_date">תאריך משוער</label>
+      <input type="date" id="event_date" name="event_date">
+    </div>
+
+    <div class="form-group">
+      <label for="venue">מקום האירוע</label>
+      <input type="text" id="venue" name="venue" placeholder="שם האולם / הגן / המקום">
+    </div>
+
+    <div class="btn-row">
+      <button type="button" class="btn btn-secondary" id="backTo1">→ חזרה</button>
+      <button type="button" class="btn btn-primary" id="toStep3">המשך ←</button>
+    </div>
+  </div>
+
+  <!-- Step 3: Contact -->
+  <div class="step" data-step="3">
+    <h2>איך ניצור קשר?</h2>
+    <p class="hint">נציג את הפרטים ונחזור אליכם תוך 24 שעות</p>
+
+    <div class="form-group">
+      <label for="full_name">שם מלא *</label>
+      <input type="text" id="full_name" name="name" required placeholder="השם שלכם">
+    </div>
+
+    <div class="form-group">
+      <label for="phone">טלפון *</label>
+      <input type="tel" id="phone" name="phone" required placeholder="05X-XXX-XXXX">
+    </div>
+
+    <input type="hidden" name="_subject" value="ליד חדש - שאלון עיצוב אירועים (Lilou Books Events)">
+    <input type="hidden" name="source" value="events.liloubooks.com/preferences">
+
+    <div class="btn-row">
+      <button type="button" class="btn btn-secondary" id="backTo2">→ חזרה</button>
+      <button type="submit" class="btn btn-primary" id="submitBtn">שליחה 💌</button>
+    </div>
+
+    <p class="error-msg" id="errorMsg">משהו השתבש בשליחה - אפשר לנסות שוב, או לשלוח וואטסאפ ישירות: <a href="https://wa.me/972502534643" target="_blank" rel="noopener">972502534643+</a></p>
+  </div>
+
+  <!-- Step 4: Thank you -->
+  <div class="step" data-step="4">
+    <div class="thank-you">
+      <div class="icon">📖💌</div>
+      <h2>תודה רבה!</h2>
+      <p>קיבלתי את כל הפרטים ואחזור אליכם תוך <strong>24 שעות</strong> עם הצעה מותאמת אישית.</p>
+      <p>בינתיים אפשר לעקוב אחרי עבודות קודמות באינסטגרם:
+        <a href="https://www.instagram.com/liloubooks____/" target="_blank" rel="noopener" style="color:var(--accent-brown); font-weight:700;">liloubooks____</a>
+      </p>
+    </div>
+  </div>
+
+</form>
+
+</div>
+
+<script>
+(function(){
+  var currentStep = 1;
+  var selectedColor = '';
+  var form = document.getElementById('prefForm');
+  var colorInput = document.getElementById('colorInput');
+  var colorCards = document.querySelectorAll('.color-card');
+  var toStep2 = document.getElementById('toStep2');
+  var toStep3 = document.getElementById('toStep3');
+  var backTo1 = document.getElementById('backTo1');
+  var backTo2 = document.getElementById('backTo2');
+  var colorBadge = document.getElementById('colorBadge');
+  var errorMsg = document.getElementById('errorMsg');
+  var submitBtn = document.getElementById('submitBtn');
+
+  function showStep(n){
+    document.querySelectorAll('.step').forEach(function(s){
+      s.classList.toggle('active', parseInt(s.dataset.step,10) === n);
+    });
+    document.querySelectorAll('.progress .dot').forEach(function(d){
+      d.classList.toggle('active', parseInt(d.dataset.step,10) <= n && n <= 3);
+    });
+    currentStep = n;
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  colorCards.forEach(function(card){
+    card.addEventListener('click', function(){
+      colorCards.forEach(function(c){ c.classList.remove('selected'); });
+      card.classList.add('selected');
+      selectedColor = card.dataset.color;
+      colorInput.value = selectedColor;
+      toStep2.disabled = false;
+    });
+  });
+
+  toStep2.addEventListener('click', function(){
+    colorBadge.textContent = selectedColor;
+    showStep(2);
+  });
+  backTo1.addEventListener('click', function(){ showStep(1); });
+
+  toStep3.addEventListener('click', function(){
+    var eventType = document.getElementById('event_type').value;
+    if(!eventType){
+      document.getElementById('event_type').focus();
+      return;
+    }
+    showStep(3);
+  });
+  backTo2.addEventListener('click', function(){ showStep(2); });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    errorMsg.style.display = 'none';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'שולח...';
+
+    var data = new FormData(form);
+
+    fetch('https://formspree.io/f/mzzjvvqv', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(function(response){
+      if(response.ok){
+        showStep(4);
+      } else {
+        throw new Error('submit failed');
+      }
+    }).catch(function(){
+      errorMsg.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'שליחה 💌';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
