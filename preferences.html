@@ -172,6 +172,56 @@ header a.logo {
 }
 .selected-color-badge strong { color:var(--accent-brown); }
 
+.addon-block {
+  background:white;
+  border-radius:16px;
+  padding:1.5rem;
+  margin-bottom:1.5rem;
+  box-shadow:0 4px 16px rgba(0,0,0,0.06);
+}
+.addon-block h3 {
+  color:var(--accent-brown);
+  font-size:1.1rem;
+  margin-bottom:1rem;
+  text-align:center;
+}
+.addon-photo {
+  height:160px;
+  border-radius:12px;
+  margin-bottom:1rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:linear-gradient(135deg,#e5ded2,#cfc4ae);
+}
+.addon-photo img { width:100%; height:100%; object-fit:cover; display:block; }
+.addon-photo .placeholder-icon { font-size:2.2rem; opacity:0.55; }
+
+.chip-group {
+  display:flex;
+  gap:0.75rem;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.chip {
+  border:2px solid #e5ded2;
+  background:white;
+  color:var(--text-color);
+  padding:0.6rem 1.2rem;
+  border-radius:50px;
+  cursor:pointer;
+  font-size:0.95rem;
+  font-weight:600;
+  transition:all .2s;
+}
+.chip:hover { border-color:var(--accent-brown); }
+.chip.selected {
+  background:var(--primary-color);
+  border-color:var(--primary-color);
+  color:#5a2a35;
+}
+
 .thank-you {
   text-align:center;
   padding:2rem 0;
@@ -200,6 +250,7 @@ header a.logo {
   <div class="dot active" data-step="1"></div>
   <div class="dot" data-step="2"></div>
   <div class="dot" data-step="3"></div>
+  <div class="dot" data-step="4"></div>
 </div>
 
 <form id="prefForm">
@@ -242,8 +293,44 @@ header a.logo {
     </div>
   </div>
 
-  <!-- Step 2: Event details -->
+  <!-- Step 2: Add-ons -->
   <div class="step" data-step="2">
+    <h2>עוד כמה דברים שכדאי לדעת עליהם</h2>
+    <p class="hint">התשובות עוזרות לי להכין לכם הצעה מדויקת יותר</p>
+
+    <div class="addon-block">
+      <div class="addon-photo">
+        <img src="extras/book-wall.jpg" alt="קיר ספרים לכניסה לאירוע" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="placeholder-icon" style="display:none;">📚🧱</span>
+      </div>
+      <h3>האם תרצו לשמוע פרטים על קיר ספרים לכניסה לאירוע?</h3>
+      <div class="chip-group" data-field="book_wall_interest">
+        <div class="chip" data-value="כן, מעניין אותי">כן, מעניין אותי</div>
+        <div class="chip" data-value="לא הפעם">לא הפעם</div>
+        <div class="chip" data-value="עוד לא בטוחים">עוד לא בטוחים</div>
+      </div>
+    </div>
+
+    <div class="addon-block">
+      <h3>מה תרצו על ספר המארחת?</h3>
+      <div class="chip-group" data-field="guestbook_choice">
+        <div class="chip" data-value="תאריך האירוע">תאריך האירוע</div>
+        <div class="chip" data-value="תמונה של החוגגים">תמונה של החוגגים</div>
+        <div class="chip" data-value="שניהם - נדייק בשיחה">שניהם - נדייק בשיחה</div>
+      </div>
+    </div>
+
+    <input type="hidden" name="book_wall_interest" id="bookWallInput">
+    <input type="hidden" name="guestbook_choice" id="guestbookInput">
+
+    <div class="btn-row">
+      <button type="button" class="btn btn-secondary" id="backTo1">→ חזרה</button>
+      <button type="button" class="btn btn-primary" id="toStep3">המשך ←</button>
+    </div>
+  </div>
+
+  <!-- Step 3: Event details -->
+  <div class="step" data-step="3">
     <h2>ספרו לי על האירוע</h2>
     <div class="selected-color-badge">בחרתם: <strong id="colorBadge"></strong></div>
 
@@ -270,13 +357,13 @@ header a.logo {
     </div>
 
     <div class="btn-row">
-      <button type="button" class="btn btn-secondary" id="backTo1">→ חזרה</button>
-      <button type="button" class="btn btn-primary" id="toStep3">המשך ←</button>
+      <button type="button" class="btn btn-secondary" id="backTo2">→ חזרה</button>
+      <button type="button" class="btn btn-primary" id="toStep4">המשך ←</button>
     </div>
   </div>
 
-  <!-- Step 3: Contact -->
-  <div class="step" data-step="3">
+  <!-- Step 4: Contact -->
+  <div class="step" data-step="4">
     <h2>איך ניצור קשר?</h2>
     <p class="hint">נציג את הפרטים ונחזור אליכם תוך 24 שעות</p>
 
@@ -294,15 +381,15 @@ header a.logo {
     <input type="hidden" name="source" value="events.liloubooks.com/preferences">
 
     <div class="btn-row">
-      <button type="button" class="btn btn-secondary" id="backTo2">→ חזרה</button>
+      <button type="button" class="btn btn-secondary" id="backTo3">→ חזרה</button>
       <button type="submit" class="btn btn-primary" id="submitBtn">שליחה 💌</button>
     </div>
 
     <p class="error-msg" id="errorMsg">משהו השתבש בשליחה - אפשר לנסות שוב, או לשלוח וואטסאפ ישירות: <a href="https://wa.me/972502534643" target="_blank" rel="noopener">972502534643+</a></p>
   </div>
 
-  <!-- Step 4: Thank you -->
-  <div class="step" data-step="4">
+  <!-- Step 5: Thank you -->
+  <div class="step" data-step="5">
     <div class="thank-you">
       <div class="icon">📖💌</div>
       <h2>תודה רבה!</h2>
@@ -326,18 +413,22 @@ header a.logo {
   var colorCards = document.querySelectorAll('.color-card');
   var toStep2 = document.getElementById('toStep2');
   var toStep3 = document.getElementById('toStep3');
+  var toStep4 = document.getElementById('toStep4');
   var backTo1 = document.getElementById('backTo1');
   var backTo2 = document.getElementById('backTo2');
+  var backTo3 = document.getElementById('backTo3');
   var colorBadge = document.getElementById('colorBadge');
   var errorMsg = document.getElementById('errorMsg');
   var submitBtn = document.getElementById('submitBtn');
+  var bookWallInput = document.getElementById('bookWallInput');
+  var guestbookInput = document.getElementById('guestbookInput');
 
   function showStep(n){
     document.querySelectorAll('.step').forEach(function(s){
       s.classList.toggle('active', parseInt(s.dataset.step,10) === n);
     });
     document.querySelectorAll('.progress .dot').forEach(function(d){
-      d.classList.toggle('active', parseInt(d.dataset.step,10) <= n && n <= 3);
+      d.classList.toggle('active', parseInt(d.dataset.step,10) <= n && n <= 4);
     });
     currentStep = n;
     window.scrollTo({top:0, behavior:'smooth'});
@@ -354,20 +445,39 @@ header a.logo {
   });
 
   toStep2.addEventListener('click', function(){
-    colorBadge.textContent = selectedColor;
     showStep(2);
   });
   backTo1.addEventListener('click', function(){ showStep(1); });
 
+  document.querySelectorAll('.chip-group').forEach(function(group){
+    var chips = group.querySelectorAll('.chip');
+    chips.forEach(function(chip){
+      chip.addEventListener('click', function(){
+        chips.forEach(function(c){ c.classList.remove('selected'); });
+        chip.classList.add('selected');
+        var field = group.dataset.field;
+        var value = chip.dataset.value;
+        if(field === 'book_wall_interest'){ bookWallInput.value = value; }
+        if(field === 'guestbook_choice'){ guestbookInput.value = value; }
+      });
+    });
+  });
+
   toStep3.addEventListener('click', function(){
+    colorBadge.textContent = selectedColor;
+    showStep(3);
+  });
+  backTo2.addEventListener('click', function(){ showStep(2); });
+
+  toStep4.addEventListener('click', function(){
     var eventType = document.getElementById('event_type').value;
     if(!eventType){
       document.getElementById('event_type').focus();
       return;
     }
-    showStep(3);
+    showStep(4);
   });
-  backTo2.addEventListener('click', function(){ showStep(2); });
+  backTo3.addEventListener('click', function(){ showStep(3); });
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
@@ -383,7 +493,7 @@ header a.logo {
       headers: { 'Accept': 'application/json' }
     }).then(function(response){
       if(response.ok){
-        showStep(4);
+        showStep(5);
       } else {
         throw new Error('submit failed');
       }
