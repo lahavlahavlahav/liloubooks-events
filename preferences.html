@@ -307,10 +307,6 @@ header a.logo {
     </div>
 
     <input type="hidden" name="color_style" id="colorInput" required>
-
-    <div class="btn-row">
-      <button type="button" class="btn btn-primary" id="toStep2" disabled>המשך ←</button>
-    </div>
   </div>
 
   <!-- Step 2: Add-ons -->
@@ -361,7 +357,6 @@ header a.logo {
 
     <div class="btn-row">
       <button type="button" class="btn btn-secondary" id="backTo1">→ חזרה</button>
-      <button type="button" class="btn btn-primary" id="toStep3">המשך ←</button>
     </div>
   </div>
 
@@ -447,8 +442,6 @@ header a.logo {
   var form = document.getElementById('prefForm');
   var colorInput = document.getElementById('colorInput');
   var colorCards = document.querySelectorAll('.color-card');
-  var toStep2 = document.getElementById('toStep2');
-  var toStep3 = document.getElementById('toStep3');
   var toStep4 = document.getElementById('toStep4');
   var backTo1 = document.getElementById('backTo1');
   var backTo2 = document.getElementById('backTo2');
@@ -476,13 +469,10 @@ header a.logo {
       card.classList.add('selected');
       selectedColor = card.dataset.color;
       colorInput.value = selectedColor;
-      toStep2.disabled = false;
+      setTimeout(function(){ showStep(2); }, 300);
     });
   });
 
-  toStep2.addEventListener('click', function(){
-    showStep(2);
-  });
   backTo1.addEventListener('click', function(){ showStep(1); });
 
   document.querySelectorAll('.chip-group').forEach(function(group){
@@ -495,14 +485,15 @@ header a.logo {
         var value = chip.dataset.value;
         if(field === 'book_wall_interest'){ bookWallInput.value = value; }
         if(field === 'guestbook_choice'){ guestbookInput.value = value; }
+
+        if(bookWallInput.value && guestbookInput.value){
+          colorBadge.textContent = selectedColor;
+          setTimeout(function(){ showStep(3); }, 300);
+        }
       });
     });
   });
 
-  toStep3.addEventListener('click', function(){
-    colorBadge.textContent = selectedColor;
-    showStep(3);
-  });
   backTo2.addEventListener('click', function(){ showStep(2); });
 
   toStep4.addEventListener('click', function(){
