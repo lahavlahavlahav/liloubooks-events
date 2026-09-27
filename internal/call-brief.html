@@ -353,7 +353,7 @@ header .tag { font-size:0.8rem; color:#999; margin-top:0.15rem; }
 </div>
 
 <div class="btn-row">
-  <button type="button" class="btn btn-primary" id="saveBtn">שמירה + שליחה לתיעוד במייל 💌</button>
+  <button type="button" class="btn btn-primary" id="saveBtn">שמירה בטבלת הלידים 📊</button>
   <button type="button" class="btn btn-ghost" id="clearBtn">התחלת בריף חדש</button>
 </div>
 <p class="status-msg" id="statusMsg"></p>
@@ -442,12 +442,12 @@ header .tag { font-size:0.8rem; color:#999; margin-top:0.15rem; }
     }
   });
 
+  var SHEET_WEBHOOK_URL = 'PASTE_APPS_SCRIPT_WEB_APP_URL_HERE';
+
   document.getElementById('saveBtn').addEventListener('click', function(){
     var state = getState();
-    var name = state.lead_name || 'ליד ללא שם';
 
     var body = new FormData();
-    body.append('_subject', 'בריף שיחה - ' + name);
     body.append('source', state.lead_source);
     body.append('name', state.lead_name);
     body.append('phone', state.lead_phone);
@@ -467,14 +467,13 @@ header .tag { font-size:0.8rem; color:#999; margin-top:0.15rem; }
     statusMsg.style.display = 'block';
     statusMsg.textContent = 'שולח...';
 
-    fetch('https://formspree.io/f/mzzjvvqv', {
+    fetch(SHEET_WEBHOOK_URL, {
       method:'POST',
-      body: body,
-      headers: { 'Accept':'application/json' }
+      body: body
     }).then(function(res){
-      if(res.ok){
+      if(res.ok || res.type === 'opaque'){
         statusMsg.className = 'status-msg success';
-        statusMsg.textContent = '✓ נשלח לתיעוד במייל. אפשר להתחיל בריף חדש כשמוכנה.';
+        statusMsg.textContent = '✓ נשמר בטבלה בגוגל שיטס. אפשר להתחיל בריף חדש כשמוכנה.';
       } else {
         throw new Error('failed');
       }
